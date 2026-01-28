@@ -1,0 +1,23 @@
+.wp-block-openstatus-badge {
+	.openstatus-badge-loading {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 32px;
+	}
+
+	.openstatus-badge-error {
+		color: #757575;
+		font-style: italic;
+	}
+
+	.openstatus-badge-preview {
+		display: inline-block;
+
+		svg {
+			display: block;
+			max-width: 100%;
+			height: auto;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"name": "openstatus-badge",
+	"version": "1.0.0",
+	"description": "Display your OpenStatus status page badge on your WordPress site.",
+	"author": "OpenStatus",
+	"license": "GPL-2.0-or-later",
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:php": "composer run lint",
+		"format": "wp-scripts format"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^27.0.0"
+	},
+	"files": [
+		"build",
+		"includes",
+		"languages",
+		"openstatus-badge.php",
+		"readme.txt"
+	]
+}

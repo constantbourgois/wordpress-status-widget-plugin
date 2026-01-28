@@ -1,0 +1,129 @@
+# Copyright (C) 2024 OpenStatus
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenStatus Badge 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/openstatusHQ/openstatus\n"
+"POT-Creation-Date: 2024-01-01T00:00:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: WP-CLI\n"
+"X-Domain: openstatus-badge\n"
+
+#: includes/class-settings.php
+msgid "OpenStatus Badge"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "OpenStatus"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Configuration"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Enter your OpenStatus status page slug to display the badge on your site."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Status Page Slug"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "your-status-page"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "The slug from your OpenStatus URL. For example, if your status page is at %s, enter \"acme\"."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Badge cache has been cleared."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Cache Management"
+msgstr ""
+
+#: includes/class-settings.php
+msgid "%d badge currently cached."
+msgid_plural "%d badges currently cached."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-settings.php
+msgid "Badges are cached for 5 minutes to improve performance. Use the button below to clear the cache if you need to see updates immediately."
+msgstr ""
+
+#: includes/class-settings.php
+msgid "Clear Badge Cache"
+msgstr ""
+
+#: includes/render.php
+msgid "OpenStatus Badge: Please configure your status page slug in"
+msgstr ""
+
+#: includes/render.php
+msgid "Settings"
+msgstr ""
+
+#: includes/render.php
+msgid "Status unavailable"
+msgstr ""
+
+#: openstatus-badge.php
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: src/edit.js
+msgid "Configure your OpenStatus status page slug to display the badge."
+msgstr ""
+
+#: src/edit.js
+msgid "Go to Settings"
+msgstr ""
+
+#: src/edit.js
+msgid "Badge Settings"
+msgstr ""
+
+#: src/edit.js
+msgid "Theme"
+msgstr ""
+
+#: src/edit.js
+msgid "Light"
+msgstr ""
+
+#: src/edit.js
+msgid "Dark"
+msgstr ""
+
+#: src/edit.js
+msgid "Size"
+msgstr ""
+
+#: src/edit.js
+msgid "Small"
+msgstr ""
+
+#: src/edit.js
+msgid "Medium"
+msgstr ""
+
+#: src/edit.js
+msgid "Large"
+msgstr ""
+
+#: src/edit.js
+msgid "Extra Large"
+msgstr ""
+
+#: src/edit.js
+msgid "Outline variant"
+msgstr ""
