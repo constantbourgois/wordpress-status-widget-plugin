@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "openstatus/badge",
+  "version": "1.0.0",
+  "title": "OpenStatus Badge",
+  "category": "widgets",
+  "icon": "chart-line",
+  "description": "Display your OpenStatus status page badge.",
+  "textdomain": "openstatus-badge",
+  "attributes": {
+    "theme": {
+      "type": "string",
+      "default": "light"
+    },
+    "size": {
+      "type": "string",
+      "default": "sm"
+    },
+    "variant": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:../includes/render.php"
+}
