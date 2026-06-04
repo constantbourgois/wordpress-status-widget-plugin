@@ -8,9 +8,7 @@ import {
 	SelectControl,
 	ToggleControl,
 	Placeholder,
-	Spinner,
 } from '@wordpress/components';
-import { useState, useEffect, useCallback } from '@wordpress/element';
 
 /**
  * Editor component for the OpenStatus Badge block.
@@ -24,77 +22,10 @@ export default function Edit( { attributes, setAttributes } ) {
 	const { theme, size, variant } = attributes;
 	const blockProps = useBlockProps();
 
-	const [ badgeSvg, setBadgeSvg ] = useState( '' );
-	const [ isLoading, setIsLoading ] = useState( false );
-	const [ error, setError ] = useState( false );
-
 	// Get settings from localized script data.
 	const settings = window.openstatusBadgeSettings || {};
 	const { slug, settingsUrl } = settings;
 
-	/**
-	 * Build the badge URL with current attributes.
-	 */
-	const buildBadgeUrl = useCallback( () => {
-		if ( ! slug ) {
-			return null;
-		}
-
-		const params = new URLSearchParams();
-
-		if ( theme && theme !== 'light' ) {
-			params.append( 'theme', theme );
-		}
-
-		if ( size && size !== 'sm' ) {
-			params.append( 'size', size );
-		}
-
-		if ( variant ) {
-			params.append( 'variant', variant );
-		}
-
-		const queryString = params.toString();
-		const baseUrl = `https://${ slug }.openstatus.dev/badge`;
-
-		return queryString ? `${ baseUrl }?${ queryString }` : baseUrl;
-	}, [ slug, theme, size, variant ] );
-
-	/**
-	 * Fetch the badge SVG.
-	 */
-	useEffect( () => {
-		const url = buildBadgeUrl();
-
-		if ( ! url ) {
-			return;
-		}
-
-		setIsLoading( true );
-		setError( false );
-
-		fetch( url, {
-			headers: {
-				Accept: 'image/svg+xml',
-			},
-		} )
-			.then( ( response ) => {
-				if ( ! response.ok ) {
-					throw new Error( 'Failed to fetch badge' );
-				}
-				return response.text();
-			} )
-			.then( ( svg ) => {
-				setBadgeSvg( svg );
-				setIsLoading( false );
-			} )
-			.catch( () => {
-				setError( true );
-				setIsLoading( false );
-			} );
-	}, [ buildBadgeUrl ] );
-
-	// If no slug is configured, show placeholder.
 	if ( ! slug ) {
 		return (
 			<div { ...blockProps }>
@@ -114,12 +45,18 @@ export default function Edit( { attributes, setAttributes } ) {
 		);
 	}
 
+	const params = new URLSearchParams();
+	if ( theme && theme !== 'light' ) params.append( 'theme', theme );
+	if ( size && size !== 'sm' ) params.append( 'size', size );
+	if ( variant ) params.append( 'variant', variant );
+
+	const baseUrl = `https://${ slug }.openstatus.dev/badge`;
+	const badgeUrl = params.toString() ? `${ baseUrl }?${ params.toString() }` : baseUrl;
+
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody
-					title={ __( 'Badge Settings', 'openstatus-badge' ) }
-				>
+				<PanelBody title={ __( 'Badge Settings', 'openstatus-badge' ) }>
 					<SelectControl
 						label={ __( 'Theme', 'openstatus-badge' ) }
 						value={ theme }
@@ -127,9 +64,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ label: __( 'Light', 'openstatus-badge' ), value: 'light' },
 							{ label: __( 'Dark', 'openstatus-badge' ), value: 'dark' },
 						] }
-						onChange={ ( value ) =>
-							setAttributes( { theme: value } )
-						}
+						onChange={ ( value ) => setAttributes( { theme: value } ) }
 					/>
 					<SelectControl
 						label={ __( 'Size', 'openstatus-badge' ) }
@@ -140,9 +75,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							{ label: __( 'Large', 'openstatus-badge' ), value: 'lg' },
 							{ label: __( 'Extra Large', 'openstatus-badge' ), value: 'xl' },
 						] }
-						onChange={ ( value ) =>
-							setAttributes( { size: value } )
-						}
+						onChange={ ( value ) => setAttributes( { size: value } ) }
 					/>
 					<ToggleControl
 						label={ __( 'Outline variant', 'openstatus-badge' ) }
@@ -155,22 +88,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			</InspectorControls>
 
 			<div { ...blockProps }>
-				{ isLoading && (
-					<div className="openstatus-badge-loading">
-						<Spinner />
-					</div>
-				) }
-				{ error && ! isLoading && (
-					<div className="openstatus-badge-error">
-						{ __( 'Status unavailable', 'openstatus-badge' ) }
-					</div>
-				) }
-				{ badgeSvg && ! isLoading && ! error && (
-					<div
-						className="openstatus-badge-preview"
-						dangerouslySetInnerHTML={ { __html: badgeSvg } }
-					/>
-				) }
+				<img src={ badgeUrl } alt={ __( 'System status', 'openstatus-badge' ) } />
 			</div>
 		</>
 	);

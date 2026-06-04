@@ -31,15 +31,20 @@ $theme   = isset( $attributes['theme'] ) ? sanitize_key( $attributes['theme'] ) 
 $size    = isset( $attributes['size'] ) ? sanitize_key( $attributes['size'] ) : 'sm';
 $variant = isset( $attributes['variant'] ) ? sanitize_key( $attributes['variant'] ) : '';
 
-$svg = OpenStatus_Badge_Cache::get_badge( $slug, $theme, $size, $variant );
+$base_url = sprintf( 'https://%s.openstatus.dev/badge', sanitize_title( $slug ) );
+$params   = array();
 
-if ( false === $svg ) {
-	return sprintf(
-		'<span class="openstatus-badge-unavailable">%s</span>',
-		esc_html__( 'Status unavailable', 'openstatus-badge' )
-	);
+if ( $theme && 'light' !== $theme ) {
+	$params['theme'] = $theme;
+}
+if ( $size && 'sm' !== $size ) {
+	$params['size'] = $size;
+}
+if ( $variant ) {
+	$params['variant'] = $variant;
 }
 
+$badge_url       = $params ? add_query_arg( $params, $base_url ) : $base_url;
 $status_page_url = sprintf( 'https://%s.openstatus.dev', sanitize_title( $slug ) );
 
 $wrapper_attributes = get_block_wrapper_attributes(
@@ -49,8 +54,9 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 
 return sprintf(
-	'<div %s><a href="%s" target="_blank" rel="noopener noreferrer">%s</a></div>',
+	'<div %s><a href="%s" target="_blank" rel="noopener noreferrer"><img src="%s" alt="%s" /></a></div>',
 	$wrapper_attributes,
 	esc_url( $status_page_url ),
-	$svg
+	esc_url( $badge_url ),
+	esc_attr__( 'System status', 'openstatus-badge' )
 );
