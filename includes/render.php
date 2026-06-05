@@ -17,14 +17,14 @@ $slug = get_option( 'openstatus_badge_slug', '' );
 
 if ( empty( $slug ) ) {
 	if ( current_user_can( 'manage_options' ) ) {
-		return sprintf(
+		echo sprintf(
 			'<p class="openstatus-badge-notice">%s <a href="%s">%s</a></p>',
 			esc_html__( 'OpenStatus Badge: Please configure your status page slug in', 'openstatus-badge' ),
 			esc_url( admin_url( 'options-general.php?page=openstatus-badge' ) ),
 			esc_html__( 'Settings', 'openstatus-badge' )
 		);
 	}
-	return '';
+	return;
 }
 
 $theme   = isset( $attributes['theme'] ) ? sanitize_key( $attributes['theme'] ) : 'light';
@@ -53,7 +53,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	)
 );
 
-return sprintf(
+echo sprintf(
 	'<div %s><a href="%s" target="_blank" rel="noopener noreferrer"><img src="%s" alt="%s" /></a></div>',
 	$wrapper_attributes,
 	esc_url( $status_page_url ),
