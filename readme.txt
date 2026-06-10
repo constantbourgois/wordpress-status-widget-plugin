@@ -2,7 +2,7 @@
 Contributors: openstatus
 Tags: status, badge, monitoring, uptime
 Requires at least: 6.1
-Tested up to: 6.7
+Tested up to: 6.8
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
@@ -18,9 +18,8 @@ OpenStatus Badge allows you to easily embed your OpenStatus status page badge an
 
 * Simple setup - just enter your status page slug
 * Customizable appearance - choose theme (light/dark), size (sm/md/lg/xl), and variant (outline)
-* Server-side caching - badges are cached for 5 minutes to ensure fast page loads
 * Block editor integration - full preview in the editor with real-time attribute changes
-* Graceful fallback - displays "Status unavailable" if the badge cannot be fetched
+* Lightweight - badge is loaded as a native `<img>` tag, no inline SVG fetching
 
 **How it works:**
 
@@ -31,10 +30,16 @@ OpenStatus Badge allows you to easily embed your OpenStatus status page badge an
 
 == Installation ==
 
-1. Upload the `openstatus-badge` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Go to Settings > OpenStatus to configure your status page slug
-4. Add the "OpenStatus Badge" block to any page or post
+**From source (developers):**
+
+1. Clone or download the repository
+2. Run `npm install` then `npm run build` to compile the block assets
+3. Upload the `openstatus-badge` folder to the `/wp-content/plugins/` directory
+4. Activate the plugin through the 'Plugins' menu in WordPress
+5. Go to Settings > OpenStatus to configure your status page slug
+6. Add the "OpenStatus Badge" block to any page or post
+
+Note: The `build/` directory is not included in the repository. You must run the build step before the plugin will work.
 
 == Frequently Asked Questions ==
 
@@ -62,6 +67,11 @@ If the badge cannot be fetched from OpenStatus, the text "Status unavailable" wi
 4. Example badge on a page
 
 == Changelog ==
+
+= 1.0.1 =
+* Fix badge display: replaced inline SVG fetching with a native `<img>` tag to avoid CORS issues
+* Fix render.php: use `echo` instead of `return` for block output
+* Tested and confirmed working on https://testwp.constantbourgois.com/sample-page/
 
 = 1.0.0 =
 * Initial release

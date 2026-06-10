@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Compiled build output — run `npm run build` before using the plugin
+build/
+
 # WordPress
 *.log
 

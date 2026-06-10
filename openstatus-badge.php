@@ -3,7 +3,7 @@
  * Plugin Name:       OpenStatus Badge
  * Plugin URI:        https://www.openstatus.dev
  * Description:       Display your OpenStatus status page badge on your WordPress site.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Requires at least: 6.1
  * Requires PHP:      7.4
  * Author:            OpenStatus
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'OPENSTATUS_BADGE_VERSION', '1.0.0' );
+define( 'OPENSTATUS_BADGE_VERSION', '1.0.1' );
 define( 'OPENSTATUS_BADGE_PATH', plugin_dir_path( __FILE__ ) );
 define( 'OPENSTATUS_BADGE_URL', plugin_dir_url( __FILE__ ) );
 

@@ -1,6 +1,6 @@
 {
 	"name": "openstatus-badge",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Display your OpenStatus status page badge on your WordPress site.",
 	"author": "OpenStatus",
 	"license": "GPL-2.0-or-later",
