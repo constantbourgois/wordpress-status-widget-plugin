@@ -31,7 +31,7 @@ $theme   = isset( $attributes['theme'] ) ? sanitize_key( $attributes['theme'] ) 
 $size    = isset( $attributes['size'] ) ? sanitize_key( $attributes['size'] ) : 'sm';
 $variant = isset( $attributes['variant'] ) ? sanitize_key( $attributes['variant'] ) : '';
 
-$base_url = sprintf( 'https://%s.openstatus.dev/badge', sanitize_title( $slug ) );
+$base_url = sprintf( 'https://%s.openstatus.dev/badge/v2', sanitize_title( $slug ) );
 $params   = array();
 
 if ( $theme && 'light' !== $theme ) {
@@ -54,7 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 
 echo sprintf(
-	'<div %s><a href="%s" target="_blank" rel="noopener noreferrer"><img src="%s" alt="%s" /></a></div>',
+	'<div %s><a href="%s" target="_blank" rel="noopener noreferrer" style="font-size:0"><img src="%s" alt="%s" /></a></div>',
 	$wrapper_attributes,
 	esc_url( $status_page_url ),
 	esc_url( $badge_url ),

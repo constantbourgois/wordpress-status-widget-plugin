@@ -50,7 +50,7 @@ export default function Edit( { attributes, setAttributes } ) {
 	if ( size && size !== 'sm' ) params.append( 'size', size );
 	if ( variant ) params.append( 'variant', variant );
 
-	const baseUrl = `https://${ slug }.openstatus.dev/badge`;
+	const baseUrl = `https://${ slug }.openstatus.dev/badge/v2`;
 	const badgeUrl = params.toString() ? `${ baseUrl }?${ params.toString() }` : baseUrl;
 
 	return (
