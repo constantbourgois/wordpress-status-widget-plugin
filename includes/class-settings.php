@@ -50,6 +50,16 @@ class OpenStatus_Badge_Settings {
 			)
 		);
 
+		register_setting(
+			'openstatus_badge_settings',
+			'openstatus_badge_variant',
+			array(
+				'type'              => 'string',
+				'sanitize_callback' => 'sanitize_key',
+				'default'           => 'outline',
+			)
+		);
+
 		add_settings_section(
 			'openstatus_badge_main',
 			__( 'Configuration', 'openstatus-badge' ),
@@ -61,6 +71,14 @@ class OpenStatus_Badge_Settings {
 			'openstatus_badge_slug',
 			__( 'Status Page Slug', 'openstatus-badge' ),
 			array( $this, 'render_slug_field' ),
+			'openstatus-badge',
+			'openstatus_badge_main'
+		);
+
+		add_settings_field(
+			'openstatus_badge_variant',
+			__( 'Default Variant', 'openstatus-badge' ),
+			array( $this, 'render_variant_field' ),
 			'openstatus-badge',
 			'openstatus_badge_main'
 		);
@@ -96,6 +114,20 @@ class OpenStatus_Badge_Settings {
 			);
 			?>
 		</p>
+		<?php
+	}
+
+	/**
+	 * Render the variant select field.
+	 */
+	public function render_variant_field() {
+		$variant = get_option( 'openstatus_badge_variant', 'outline' );
+		?>
+		<select id="openstatus_badge_variant" name="openstatus_badge_variant">
+			<option value="" <?php selected( $variant, '' ); ?>><?php esc_html_e( 'No-outline', 'openstatus-badge' ); ?></option>
+			<option value="outline" <?php selected( $variant, 'outline' ); ?>><?php esc_html_e( 'Outline', 'openstatus-badge' ); ?></option>
+		</select>
+		<p class="description"><?php esc_html_e( 'Used as the default when the block has no variant set.', 'openstatus-badge' ); ?></p>
 		<?php
 	}
 

@@ -29,7 +29,9 @@ if ( empty( $slug ) ) {
 
 $theme   = isset( $attributes['theme'] ) ? sanitize_key( $attributes['theme'] ) : 'light';
 $size    = isset( $attributes['size'] ) ? sanitize_key( $attributes['size'] ) : 'sm';
-$variant = isset( $attributes['variant'] ) ? sanitize_key( $attributes['variant'] ) : '';
+$variant = isset( $attributes['variant'] ) && '' !== $attributes['variant']
+	? sanitize_key( $attributes['variant'] )
+	: sanitize_key( get_option( 'openstatus_badge_variant', 'outline' ) );
 
 $base_url = sprintf( 'https://%s.openstatus.dev/badge/v2', sanitize_title( $slug ) );
 $params   = array();
